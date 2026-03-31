@@ -1,0 +1,42 @@
+const API_KEY = "b0c8015005fd4fc583ef418624d50626";
+
+const URL = `https://newsapi.org/v2/everything?q=india&sortBy=publishedAt&apiKey=${API_KEY}`;
+
+const container = document.getElementById("news-container");
+const loading = document.getElementById("loading");
+
+async function fetchNews() {
+  loading.style.display = "block";
+
+  try {
+    const res = await fetch(URL);
+    const data = await res.json();
+
+    displayNews(data.articles);
+
+  } catch (error) {
+    container.innerHTML = "<p>Error loading news</p>";
+  }
+
+  loading.style.display = "none";
+}
+
+function displayNews(newsArray) {
+  container.innerHTML = "";
+
+  newsArray.map((news) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${news.urlToImage || ''}">
+      <h3>${news.title}</h3>
+      <p>${news.description || "No description"}</p>
+      <a href="${news.url}" target="_blank">Read More</a>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+fetchNews();
