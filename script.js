@@ -30,31 +30,27 @@ function displayNews(newsArray) {
 }
 document.getElementById("search").addEventListener("input", (e) => {
   const keyword = e.target.value.toLowerCase();
-
   const filtered = allNews.filter(news =>
     news.title && news.title.toLowerCase().includes(keyword)
   );
   displayNews(filtered);
 });
 function sortAZ() {
-  const sorted = [...allNews].sort((a, b) =>
-    a.title.localeCompare(b.title)
-  );
-
+  let sorted = allNews.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+  });
   displayNews(sorted);
 }
 function sortLatest() {
-  const sorted = [...allNews].sort((a, b) =>
-    new Date(b.publishedAt) - new Date(a.publishedAt)
-  );
-
+  let sorted = allNews.sort(function(a, b) {
+    return new Date(b.publishedAt) - new Date(a.publishedAt);
+  });
   displayNews(sorted);
 }
 function filterSource(source) {
-  const filtered = allNews.filter(news =>
-    news.source.name.toLowerCase().includes(source)
-  );
-
+  let filtered = allNews.filter(function(news) {
+    return news.source.name.toLowerCase().includes(source);
+  });
   displayNews(filtered);
 }
 fetchNews();
