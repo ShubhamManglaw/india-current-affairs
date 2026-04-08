@@ -7,6 +7,11 @@
 <body>
 
   <h1>India Current Affairs</h1>
+  <input type="text" id="search" placeholder="Search news..." />
+  <button onclick="sortAZ()">Sort A-Z</button>
+  <button onclick="sortLatest()">Latest</button>
+  <button onclick="filterSource('times')">Times</button>
+  <button onclick="filterSource('india')">India</button>
   <p id="loading">Loading news...</p>
   <div id="news-container"></div>
   <script src="script.js"></script>
