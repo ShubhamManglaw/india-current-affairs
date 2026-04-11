@@ -1,21 +1,31 @@
-# India Current Affairs Web App
-This project is a simple web application that shows the latest current affairs related to India using a news API. It fetches real-time data and displays it on the webpage.
-#Objective
-To practice JavaScript concepts like:
-Fetch API
-DOM manipulation
-Array methods (map, filter, sort)
+#  India Current Affairs Web App
 
-#API Used
-NewsAPI https://newsapi.org/
+## Description
+This is a web application that shows the latest India-related current affairs using a news API. It fetches real-time data and displays it in a clean UI.
 
-#Features
-View latest news
-Search news
-Filter and sort news
-Simple and responsive UI
+## Features
+- View latest news  
+- Search news  
+- Filter news  
+- Sort news (A-Z, latest)  
+- Responsive design  
 
-#Tech Stack
-HTML
-CSS
-JavaScript
+## Tech Used
+- HTML  
+- CSS  
+- JavaScript  
+- Fetch API  
+
+## API Used
+NewsAPI (https://newsapi.org/)
+
+## Live Project
+(Add your deployed link here)
+
+## How to Run
+1. Open project folder  
+2. Add API key in script.js  
+3. Open index.html  
+
+## Author
+Shubham 
