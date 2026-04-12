@@ -1,19 +1,33 @@
-const API_KEY = "b0c8015005fd4fc583ef418624d50626";
-const URL = `https://gnews.io/api/v4/search?q=india&lang=en&country=in&max=10&apikey=5959fbbb5ac516735b51276f2d301473`;
+const ENDPOINTS = ["/api/fetch-news", "/.netlify/functions/fetch-news"];
 const container = document.getElementById("news-container");
 const loading = document.getElementById("loading");
 let allNews = [];
+
 async function fetchNews() {
-  try {
-    const res = await fetch(URL);
-    const data = await res.json();
-    allNews = data.articles;
-    displayNews(allNews);
-  } catch (error) {
-    container.innerHTML = "<p>Error loading news</p>";
+  let data = null;
+
+  for (const endpoint of ENDPOINTS) {
+    try {
+      const res = await fetch(endpoint);
+      if (!res.ok) continue;
+      data = await res.json();
+      break;
+    } catch (error) {
+      continue;
+    }
   }
+
+  if (!data || !data.articles) {
+    container.innerHTML = "<p>Error loading news</p>";
+    loading.style.display = "none";
+    return;
+  }
+
+  allNews = data.articles;
+  displayNews(allNews);
   loading.style.display = "none";
 }
+
 function displayNews(newsArray) {
   container.innerHTML = "";
   newsArray.map((news) => {
