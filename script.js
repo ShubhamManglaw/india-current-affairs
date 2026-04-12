@@ -15,11 +15,15 @@ async function fetchNews() {
 }
 function displayNews(newsArray) {
   container.innerHTML = "";
-  newsArray.map((news) => {
+  newsArray.forEach((news) => {
     const card = document.createElement("div");
     card.className = "card";
+    const imageSrc = news.image || news.urlToImage || "";
+    const imageHtml = imageSrc
+      ? `<img src="${imageSrc}" alt="${news.title || 'News image'}" onerror="this.style.display='none'" />`
+      : `<div class="image-placeholder">No image available</div>`;
     card.innerHTML = `
-      <img src="${news.image || ''}">
+      ${imageHtml}
       <h3>${news.title}</h3>
       <p>${news.description || "No description"}</p>
       <a href="${news.url}" target="_blank">Read More</a>
