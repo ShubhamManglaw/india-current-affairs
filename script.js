@@ -1,5 +1,5 @@
 const API_KEY = "b0c8015005fd4fc583ef418624d50626";
-const URL = `https://newsapi.org/v2/everything?q=india&sortBy=publishedAt&apiKey=${API_KEY}`;
+const URL = `https://gnews.io/api/v4/search?q=india&lang=en&country=in&max=10&apikey=5959fbbb5ac516735b51276f2d301473`;
 const container = document.getElementById("news-container");
 const loading = document.getElementById("loading");
 let allNews = [];
@@ -20,7 +20,7 @@ function displayNews(newsArray) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <img src="${news.urlToImage || ''}">
+      <img src="${news.image || ''}">
       <h3>${news.title}</h3>
       <p>${news.description || "No description"}</p>
       <a href="${news.url}" target="_blank">Read More</a>
